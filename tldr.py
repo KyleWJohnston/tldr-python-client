@@ -181,12 +181,12 @@ def get_page(command, remote=None, platform=None):
 
 
 DEFAULT_COLORS = {
-    'blank': 'white',
-    'name': 'white bold',
-    'description': 'white',
+    'blank': 'none',
+    'name': 'none',
+    'description': 'none',
     'example': 'green',
     'command': 'red',
-    'parameter': 'white',
+    'parameter': 'none',
 }
 
 # See more details in the README:
@@ -212,6 +212,7 @@ def colors_of(key):
         user_value = None
     values = user_value or DEFAULT_COLORS[key]
     values = values.split()
+    values = [None if x == 'none' else x for x in values]
     return (
         values[0] if len(values) > 0 else None,
         values[1] if len(values) > 1 and values[1].startswith('on_') else None,
